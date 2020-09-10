@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class backgroundLoop : MonoBehaviour
+public class BackgroundLoop : MonoBehaviour
 {
     public GameObject[] levels;
-    private Camera mainCamera;
-    private Vector2 screenBounds;
     public float choke;
     public float scrollSpeed;
 
+    private Camera mainCamera;
+    private Vector2 screenBounds;
     private Vector3 lastScreenPosition;
 
     void Start()
@@ -22,6 +22,7 @@ public class backgroundLoop : MonoBehaviour
         }
         lastScreenPosition = transform.position;
     }
+
     void loadChildObjects(GameObject obj)
     {
         float objectWidth = obj.GetComponent<SpriteRenderer>().bounds.size.x - choke;
@@ -37,6 +38,7 @@ public class backgroundLoop : MonoBehaviour
         Destroy(clone);
         Destroy(obj.GetComponent<SpriteRenderer>());
     }
+
     void repositionChildObjects(GameObject obj)
     {
         Transform[] children = obj.GetComponentsInChildren<Transform>();
@@ -57,6 +59,7 @@ public class backgroundLoop : MonoBehaviour
             }
         }
     }
+
     void Update()
     {
         Vector3 velocity = Vector3.zero;
@@ -64,12 +67,13 @@ public class backgroundLoop : MonoBehaviour
         Vector3 smoothPosition = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, 0.3f);
         transform.position = smoothPosition;
     }
+
     void LateUpdate()
     {
         foreach (GameObject obj in levels)
         {
             repositionChildObjects(obj);
-            float parallaxSpeed = 1 - Mathf.Clamp01(Mathf.Abs(1f / obj.transform.position.z));
+            float parallaxSpeed = 1 - Mathf.Clamp01(Mathf.Abs(1.0f / obj.transform.position.z));
             float difference = transform.position.x - lastScreenPosition.x;
             obj.transform.Translate(Vector3.right * difference * parallaxSpeed);
         }
