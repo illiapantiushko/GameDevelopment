@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed = 15f;
+    private Animator animator;
     private Rigidbody2D rigidbody;
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
