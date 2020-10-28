@@ -23,15 +23,23 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        //horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
-        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
         if(Input.GetButtonDown("Jump"))
         {
-            jump = true;
-            animator.SetBool("Jump", true);
+            UpdateJump();
         }
+    }
+
+    public void UpdateMove(float movement) {
+        horizontalMove = movement * runSpeed;
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+    }
+
+    public void UpdateJump() {
+        jump = true;
+        animator.SetBool("Jump", true);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -47,10 +55,11 @@ public class PlayerController : MonoBehaviour
                new Vector3(collision.gameObject.transform.position.x, collision.gameObject.transform.position.y, collision.gameObject.transform.position.z),
                Quaternion.identity
             ) as GameObject;
-
+            Destroy(collision.gameObject.transform.GetChild(0).gameObject);
             Destroy(particle.gameObject, particle.gameObject.GetComponent<ParticleSystem>().duration);
-
-            Destroy(collision.gameObject);
+            AudioSource audio =collision.gameObject.GetComponent<AudioSource>();
+            audio.Play();
+            Destroy(collision.gameObject,audio.clip.length);
             // set score (based on coin type)
             // play sound
             // add particle
