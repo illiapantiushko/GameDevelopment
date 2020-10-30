@@ -617,9 +617,9 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
-  - component: {fileID: 519420035}
   - component: {fileID: 519420034}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -759,11 +759,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - {fileID: 671745313}
-  - {fileID: 1594937648}
-  - {fileID: 1803692908}
-  - {fileID: 273199321}
   - {fileID: 835034813}
+  - {fileID: 273199321}
+  - {fileID: 1803692908}
+  - {fileID: 1594937648}
+  - {fileID: 671745313}
   choke: 0
   scrollSpeed: 0
 --- !u!1 &547757275 stripped

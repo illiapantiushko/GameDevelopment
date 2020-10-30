@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackgroundLoop : MonoBehaviour
+public class BackgroundLoop1 : MonoBehaviour
 {
     public GameObject[] levels;
     public float choke;
